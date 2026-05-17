@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+</head>
+<body>
+  <h1>My To-Do</h1>
+  <input type="text" id="taskInput" placeholder="Tulis task...">
+  <button id="addBtn">Tambah</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    const btn = document.getElementById('addBtn');
+    const input = document.getElementById('taskInput');
+    const list = document.getElementById('taskList');
+
+    btn.addEventListener('click', function() {
+      const text = input.value;
+      if (text === ""){
+        alert("harus diisi");
+        return;
+      }
+      const li = document.createElement('li'); 
+      li.textContent = text;
+      li.addEventListener('click', function(){
+        li.style.textDecoration='line-through';
+      });
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = '❌';
+      deleteBtn.addEventListener('click', function(){
+        list.removeChild(li);
+      });
+      li.appendChild(deleteBtn);
+      list.appendChild(li); 
+      input.value = ''; 
+    });
+  </script>
+</body>
+</html>
